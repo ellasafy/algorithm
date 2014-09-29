@@ -1,17 +1,19 @@
 package com.algorithm.tree;
 
+import org.junit.Test;
+
 public class BinaryTree {
 	public int value;
 	public BinaryTree left = null;
 	public BinaryTree right = null;
 	public static void main(String[] args) {
-	   BinaryTree tree1 = build();	
-	   preVisit(tree1);
+//	   BinaryTree tree1 = build();	
+//	   preVisit(tree1);
 	   
 	}
 	
 	
-	public static BinaryTree build() {
+	public  BinaryTree build() {
 		//1
 		BinaryTree root = new BinaryTree();
 		root.value = 1;
@@ -30,6 +32,10 @@ public class BinaryTree {
 		left1.left = left11;
 		left1.right = right12;
 		
+		BinaryTree left211 = new BinaryTree();
+		left11.left = left211;
+		left211.value = 3;
+		
 		BinaryTree left21 = new BinaryTree();
 		BinaryTree right22 = new BinaryTree();
 		
@@ -37,6 +43,10 @@ public class BinaryTree {
 		right22.value = 7;
 		right1.left = left21;
 		right1.right = right22;
+		
+		System.out.println( "             1             " );
+		System.out.println("          2       3          ");
+		System.out.println("        4    5   6   7       ");
 		//4
 //		
 //		BinaryTree left111 = new BinaryTree();
@@ -77,6 +87,122 @@ public class BinaryTree {
 			preVisit(tree.right);	
 		}
 
+	}
+	
+	@Test
+	public void testMacDepth() {
+		BinaryTree tree = build();
+		System.out.print(maxDepth(tree));
+	    
+	}
+	public int maxDepth(BinaryTree tree) {
+		if (tree == null) {
+			return 0;
+		}
+		int lDepth = maxDepth(tree.left);
+		int rDepth = maxDepth(tree.right);
+		
+		if (lDepth > rDepth) {
+			return lDepth +1;
+		} else {
+			return rDepth +1;
+		}
+	}
+	
+	@Test
+	public void testAllPath() {
+		BinaryTree tree = build();
+		int path[] = new int[10];
+		int len = 0;
+	    printAllPath(tree, path, len);
+	    
+	}
+	
+	/**
+	 * 打印一个二叉树所有的路径
+	 * @param tree
+	 * @param path
+	 * @param len
+	 */
+	public void printAllPath(BinaryTree tree, int path[], int len) {
+		if (tree == null) {
+			return;
+		}
+		path[len++] = tree.value;
+		
+		if (tree.left == null && tree.right == null) {
+			System.out.println("get a path");
+			for (int i = 0; i < len; i++) {
+				System.out.print(path[i] + " ");
+			}
+			System.out.println("");
+		} else {
+			printAllPath(tree.left, path, len);
+			printAllPath(tree.right, path, len);
+		}
+	}
+	
+	@Test
+	public void testAllPathSum() {
+		BinaryTree tree = build();
+		System.out.println(allPathSum(tree));
+	    
+	}
+	/**
+	 * 计算一个二叉树有多少个路径
+	 * @param tree
+	 * @param sum
+	 */
+	int sum =0;
+	public int allPathSum(BinaryTree tree) {
+	    if (tree == null) {
+	    	return 0;
+	    }
+	    if (tree.left == null && tree.right == null) {
+	    	sum = sum +1;
+	    } else {
+	    	allPathSum(tree.left);
+	    	allPathSum(tree.right);
+	    }
+	    return sum;
+	}
+	
+	@Test
+	public void testPrintPathSumToGivenValue() {
+		System.out.println("====================================");
+		BinaryTree tree = build();
+		int path[] = new int[10];
+		int len = 0;
+		int sum = 0;
+		printPathSumToGivenValue(tree, path, len, sum, 10);
+	}
+	
+	/**
+	 * 二叉树的所有路径 中的和等于给定的数
+	 * @param tree
+	 * @param path
+	 * @param len
+	 * @param sum
+	 * @param value
+	 */
+	public void printPathSumToGivenValue(BinaryTree tree, int path[], int len, int sum, int value) {
+		if (tree == null) {
+			return;
+		}
+		path[len++] = tree.value;
+		sum = sum + tree.value;
+		if (tree.left == null && tree.right == null && sum == value)  {
+			System.out.println("get a path");
+			for (int i = 0; i < len; i++) {
+				System.out.print(path[i] + " ");
+			}
+			System.out.println("");
+		}else {
+			printPathSumToGivenValue(tree.left, path,len, sum, value);
+			
+			printPathSumToGivenValue(tree.right, path,len, sum, value);
+		}
+		
 	}
 
 }

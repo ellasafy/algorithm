@@ -54,7 +54,9 @@ public class ListOperand {
 		int c[] = new int[a.length + b.length];
 		while (i < a.length && j < b.length) {
 			if (a[i] < b[j]) {
-				c[index++] = a[i];
+				if (index !=0 &&a[i] != c[index -1]) {
+					c[index++]
+				}
 				i++;
 			} else if (a[i] > b[j]) {
 				c[index++] = b[j];
