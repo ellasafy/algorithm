@@ -6,7 +6,6 @@ public class TreeToLink {
 	private static LinkFromTree tmp;
 	public static void main(String[] args) {
 		BinaryTree trr= new BinaryTree();
-		 trr= trr.build();
 		LinkFromTree link = new LinkFromTree();
 		midleVisit(trr, link);
 		while(tmp.pre!=null) {

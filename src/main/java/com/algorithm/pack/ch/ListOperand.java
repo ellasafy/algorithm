@@ -54,12 +54,20 @@ public class ListOperand {
 		int c[] = new int[a.length + b.length];
 		while (i < a.length && j < b.length) {
 			if (a[i] < b[j]) {
+				//去除重复的
 				if (index !=0 &&a[i] != c[index -1]) {
-					c[index++]
+					c[index++] = a[i];
+				} else if (index == 0) {
+					c[index++] = a[i];
 				}
 				i++;
 			} else if (a[i] > b[j]) {
-				c[index++] = b[j];
+				if (index !=0 &&a[i] != c[index -1]) {
+					c[index++] = b[j];
+				}else if (index ==0 ) {
+					c[index++] = b[j];
+				}
+			
 				j++;
 			}else {
 				c[index++] = a[i];
