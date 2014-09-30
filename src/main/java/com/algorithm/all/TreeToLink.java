@@ -5,7 +5,8 @@ import com.algorithm.tree.BinaryTree;
 public class TreeToLink {
 	private static LinkFromTree tmp;
 	public static void main(String[] args) {
-		BinaryTree trr= com.algorithm.tree.BinaryTree.build();
+		BinaryTree trr= new BinaryTree();
+		 trr= trr.build();
 		LinkFromTree link = new LinkFromTree();
 		midleVisit(trr, link);
 		while(tmp.pre!=null) {

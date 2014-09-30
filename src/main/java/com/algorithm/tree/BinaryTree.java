@@ -1,5 +1,8 @@
 package com.algorithm.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import org.junit.Test;
 
 public class BinaryTree {
@@ -34,7 +37,7 @@ public class BinaryTree {
 		
 		BinaryTree left211 = new BinaryTree();
 		left11.left = left211;
-		left211.value = 3;
+		left211.value = 8;
 		
 		BinaryTree left21 = new BinaryTree();
 		BinaryTree right22 = new BinaryTree();
@@ -201,6 +204,72 @@ public class BinaryTree {
 			printPathSumToGivenValue(tree.left, path,len, sum, value);
 			
 			printPathSumToGivenValue(tree.right, path,len, sum, value);
+		}
+		
+	}
+	
+	@Test
+	public void testMirror() {
+		BinaryTree tree = build();
+		BinaryTree tree2 = mirrorOfTree(tree);
+		
+		preVisit(tree);
+		System.out.println("");
+		preVisit(tree2);
+	}
+	
+	/**
+	 * 二叉树的镜像
+	 * @param tree
+	 * @return
+	 */
+	public BinaryTree  mirrorOfTree(BinaryTree tree) {
+	      if (tree == null) {
+	    	  return null;
+	      }
+	      
+	      BinaryTree newTree = new BinaryTree();
+	      newTree.value = tree.value;
+	     
+	      newTree.right =  mirrorOfTree(tree.left);
+	      newTree.left =  mirrorOfTree(tree.right);
+	      return newTree;
+	}
+	
+	@Test
+    public void testTreeByLevel() {
+    	BinaryTree tree = build();
+    	printTreeByLevel(tree);
+    }
+	
+	/**
+	 * 广度优先：根据每一层，打印数据
+	 * 
+	 */
+	public void printTreeByLevel(BinaryTree tree) {
+		Queue<BinaryTree> q1 = new LinkedList<BinaryTree>();
+		Queue<BinaryTree> q2 = new LinkedList<BinaryTree>();
+		Queue<BinaryTree> tmp = null;
+		
+		q1.add(tree);
+		while (!q1.isEmpty()) {
+			BinaryTree t = q1.poll();
+			System.out.print(t.value + " ");
+			
+			if (t.left != null) {
+				q2.add(t.left);
+			}
+			if (t.right != null) {
+				q2.add(t.right);
+			}
+			
+			if (q1.isEmpty()) {
+				tmp = q2;
+				q2= q1;
+				q1=tmp;
+				
+				System.out.println();
+			}
 		}
 		
 	}
