@@ -83,5 +83,44 @@ public class LinkList {
 		}
 		return tmp;
 	}
+	
+	@Test
+	public void testReverse() {
+		LinkList l1 = new LinkList();
+		l1.value=1;
+		LinkList l2 = new LinkList();
+		l2.value = 2;
+		l1.next = l2;
+		LinkList l3 = new LinkList();
+		l3.value = 3;
+		l2.next = l3;
+		
+		LinkList l4 = reverse(l1);
+		
+		while(l4 != null) {
+			System.out.println(l4.value);
+			l4 = l4.next;
+		}
+	}
+	
+	/**
+	 * 将一个链表逆序
+	 * @param list
+	 * @return
+	 */
+	public LinkList reverse(LinkList list) {
+		LinkList tmp1 = null;
+	    LinkList tmp2 = null;
+	    
+	    while (list != null) {
+	    	tmp2 = list.next;
+	    	list.next = tmp1;
+	    	tmp1 = list;
+	    	list = tmp2;
+	    	
+	    }
+	    
+	    return tmp1;
+	}
 
 }
