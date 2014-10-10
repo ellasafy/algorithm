@@ -1,6 +1,9 @@
 package com.algorithm;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -12,11 +15,17 @@ public class MainTest {
 	}
 	
 	public void change(Integer i) {
+<<<<<<< HEAD
 		String ss = "sss";
 		ss.toCharArray();
 		 boolean[]  tempBoolean = new boolean[128];
 		 
 		 
+=======
+		i = i +1;
+		System.out.println(i);
+		Collection<String> list = new ArrayList<String>();
+>>>>>>> 54e897b536be64827ac84ab43c9d396e727c5785
 		
 	}
 	
