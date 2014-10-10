@@ -8,7 +8,9 @@ public class Main {
 		String orignalString = in.nextLine();
 		String removeString = in.nextLine();
 		in.close();
-		System.out.println(removeSpecificChars(orignalString, removeString));
+		String t = removeSpecificChars(orignalString, removeString);
+		System.out.println(t);
+		System.out.print(t);
 	}
 
 	public static String removeSpecificChars(String original, String remove) {
