@@ -1,5 +1,7 @@
 package com.algorithm.sort;
 
+import org.junit.Test;
+
 public class Sort {
 	public static void main(String[] args) {
 		int[] a = {22,2,5,8,11,3};
@@ -46,5 +48,30 @@ public class Sort {
 		}
 		return a;
 	}
+	
+	@Test
+	public void testInsertSort() {
+		int a[] = new int[] {5,2,4,6,1,3};
+		insertSort(a);
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i] + " ");
+		}
+	}
+	
+	public int[] insertSort(int a[]) {
+		for (int i = 1; i < a.length; i++) {
+			int j = i -1;
+			int key = a[i];
+			while (j >=0 && a[j] > key) {
+				a[j + 1] = a[j];
+				j--;
+			}
+			a[j + 1] = key;
+		}
+		
+		return a;
+	}
+	
+    
 
 }
