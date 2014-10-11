@@ -65,4 +65,31 @@ public class Sum {
 		}
 		return Jump(n-1) + Jump(n-1);
 	}
+	
+	@Test
+	public void testBinarySum() {
+		System.out.println(Integer.toBinaryString(1));
+		System.out.println(binarySum(1));
+		System.out.println(Integer.toBinaryString(2));
+		System.out.println(binarySum(2));
+		System.out.println(Integer.toBinaryString(3));
+		System.out.println(binarySum(3));
+		System.out.println(Integer.toBinaryString(33));
+		System.out.println(binarySum(33));
+		System.out.println(Integer.toBinaryString(333));
+		System.out.println(binarySum(333));
+	}
+	/*int 数种binary字符1的个数
+	 * 
+	 */
+	public int binarySum(int n) {
+		int sum = 0;
+		while(n>0) {
+			if ((n & 1) == 1) {
+				sum = sum +1;
+			}
+			n = n >>1;
+		}
+		return sum;
+	}
 }
