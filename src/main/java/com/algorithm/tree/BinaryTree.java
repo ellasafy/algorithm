@@ -81,7 +81,17 @@ public class BinaryTree {
 //		right22.right = right222;
 		return root;
 	}
-	static void preVisit(BinaryTree tree) {
+	
+	@Test
+	public void testPreVisit() {
+		BinaryTree tree = build();
+		preVisit(tree);
+	}
+	/**
+	 * 先序遍历，递归实现
+	 * @param tree
+	 */
+	 void preVisit(BinaryTree tree) {
 		System.out.print(tree.value + " ");
 		if (tree.left != null) {
 			preVisit(tree.left);
@@ -91,7 +101,33 @@ public class BinaryTree {
 		}
 
 	}
-	
+	 @Test
+	 public void testPreVisit2() {
+			BinaryTree tree = build(); 
+			preVisit2(tree);
+	 }
+	 /**
+	  * 先序遍历，非递归实现
+	  * @param tree
+	  */
+	 public void preVisit2(BinaryTree tree) {
+		 LinkedList<BinaryTree> list = new LinkedList<BinaryTree>();
+
+         while (tree != null || !list.isEmpty()){
+        	 
+        	 while (tree != null) {
+        		 System.out.print(tree.value + " ");
+        		 
+        		 list.add(tree);
+        		 tree = tree.left;
+        	 }
+        	 if (!list.isEmpty()) {
+        		 tree = list.getLast()	;
+        		 list.remove(tree);
+        		 tree = tree.right;
+        	 }
+         }
+	 }
 	@Test
 	public void testMacDepth() {
 		BinaryTree tree = build();
