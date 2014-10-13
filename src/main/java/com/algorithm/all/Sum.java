@@ -123,4 +123,33 @@ public class Sum {
 	    }
 	    return sum;
 	}
+	@Test
+	public void testContinueSum() {
+		continueSum(15);
+	}
+	/**
+	 * 输入一个正数n，输出所有和为n连续正数序列。
+                例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，所以输出3个连续序列1-5、4-6和7-8。
+              设起始数为x，共i个数相加，序列x + (x+1) + (x+2) + ...+ (x + i -1) = N
+               解为：x*i = N - ((i*(i-1))/2;
+	 * @param n
+	 * @return
+	 */
+	public void continueSum(int n) {
+		for (int i = 2;  i < n; i++) {
+			int x = (2*n - i*i +i)/(2*i);
+			int x2 = (2*n - i*i +i)%(2*i);
+			if (x >0 && x2 ==0) {
+				
+			
+			for (int j = 0; j < i; j++) {
+				System.out.print(x+j + " ");
+			}
+			System.out.println("");
+			}
+		}
+	}
 }
+
+
+
