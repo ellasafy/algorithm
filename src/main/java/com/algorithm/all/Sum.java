@@ -92,4 +92,35 @@ public class Sum {
 		}
 		return sum;
 	}
+	
+	@Test
+	public void testDecimalSum() {
+		System.out.println(decimalSum(1));
+		System.out.println(decimalSum(5));
+		System.out.println(decimalSum(12));
+	}
+	
+	/**
+	 * ：输入一个整数n，求从1到n这n个整数的十进制表示中1出现的次数。
+         例如输入12，从1到12这些整数中包含1 的数字有1，10，11和12，1一共出现了5次。
+	 * @param n
+	 * @return
+	 */
+	public int decimalSum(int n) {
+	    StringBuilder s = new StringBuilder();
+	    for (int i = 1; i <=n; i++) {
+	    	s.append(i);
+	    }
+	    String ss = s.toString();
+	    
+	    System.out.println(ss);
+	    int sum = 0;
+	    for (int i = 0; i < ss.length(); i++) {
+	    	int ii= Integer.valueOf(ss.charAt(i) - 48);
+	    	if ( ii== 1) {
+	    		sum = sum +1;
+	    	}
+	    }
+	    return sum;
+	}
 }
