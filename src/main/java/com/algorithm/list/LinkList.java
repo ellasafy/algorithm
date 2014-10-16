@@ -1,5 +1,7 @@
 package com.algorithm.list;
 
+import java.util.LinkedList;
+
 import org.junit.Test;
 
 /**
@@ -121,6 +123,33 @@ public class LinkList {
 	    }
 	    
 	    return tmp1;
+	}
+	
+	/**
+	 * linkedlist长度，iterator方式
+	 * @param list
+	 * @return
+	 */
+	public int linkedListLength(LinkList list) {
+		int count = 0;
+		while (list != null) {
+			count++;
+			list = list.next;
+		}
+		return count;
+	}
+	
+	/**
+	 * linkedlist长度，递归方式
+	 * @param list
+	 * @return
+	 */
+	public int linkedListLengthWithRecursion(LinkList list) {
+		if (list == null) {
+			return 0;
+		}
+		
+		return 1 + linkedListLengthWithRecursion(list.next);
 	}
 
 }
