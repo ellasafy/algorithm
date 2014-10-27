@@ -2,8 +2,11 @@ package com.algorithm.string;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.junit.Test;
 
@@ -120,6 +123,37 @@ public class StringAll {
             }
         }
         return false;
+    }
+    
+    @Test
+    public void testFindFirstSingleChar() {
+    	String s = "abaccdeff";
+    	System.out.println(findFirstSingleChar(s));
+    }
+    /**
+     * 在一个字符串中找到第一个只出现一次的字符。如输入abaccdeff，则输出b。  
+     * @param s
+     * @return
+     */
+    public Character findFirstSingleChar(String s) {
+    	TreeMap<Character, Boolean> tree = new TreeMap<Character, Boolean>();
+    	char[] chars = s.toCharArray();
+    	for (int i =0; i < chars.length; i++) {
+    		if (tree.get(chars[i]) == null) {
+    			tree.put(chars[i], true);
+    		}else {
+    			tree.put(chars[i], false);
+    		}
+    	}
+    	Iterator<Map.Entry<Character, Boolean>> it = tree.entrySet().iterator();
+    	
+    	while (it.hasNext()) {
+    		Map.Entry<Character, Boolean> mp = it.next();
+    		if (mp.getValue()) {
+    			return mp.getKey();
+    		}
+    	}
+    	return null;
     }
 
 

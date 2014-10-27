@@ -72,6 +72,60 @@ public class Sort {
 		return a;
 	}
 	
+	@Test
+	public void testQuickSort() {
+		int[] arr = new int[] {2,1,5,8,7,6};
+		quicksort(arr, 0, arr.length -1);
+		
+		for (int i=0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+	}
+	
+	public void  quicksort(int[] arr, int low, int end) {
+		int mid = (low + end)/2;
+		
+		int i = low;
+		int j = end;
+		
+		while(i <=j) {
+			
+			while(arr[i] < arr[mid]) {
+				i++;
+			}
+			while(arr[j] > arr[mid]) {
+				j--;
+			}
+			
+			if (i <= j) {
+				int tmp = arr[i];
+				arr[i]  = arr[j];
+				arr[j] = tmp;
+				i++;
+				j--;
+			}
+		}
+		
+		if (low < j) {
+			quicksort(arr,low, j);
+		}
+		if (i < end) {
+			quicksort(arr, i, end);
+		}
+	}
+	
+    public void mergeSort(int[] a, int low, int height) {
+    	
+    }
     
+    public void merge(int[] a, int low, int mid, int height) {
+    	int[] tmp = new int[height - low +1];
+    	
+    	int i = low;
+    	int j = mid ;
+    	
+//    	while (i <)
+    	
+    }
 
 }

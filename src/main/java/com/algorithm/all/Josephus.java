@@ -13,8 +13,10 @@ public class Josephus {
         }
         while(prisoners.size() > 1){
             killIdx = (killIdx + k - 1) % prisoners.size();
+            System.out.print(killIdx + " " + prisoners.get(killIdx));
             prisoners.remove(killIdx);
         }
+        System.out.println("");
         return prisoners.get(0);
     }
  
