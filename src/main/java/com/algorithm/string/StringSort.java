@@ -36,5 +36,26 @@ public class StringSort {
 		}
 
 	}
+	
+	/**
+	 * ：输入一个字符串，打印出该字符串中字符的所有排列。
+	 *  例如输入字符串abc，则输出由字符a、b、c所能排列出来的所有字符串
+	 * abc、acb、bac、bca、cab和cba。
+	 * 
+	 * @param origin
+	 * @param p
+	 * @param n
+	 */
+	public void printAll(String s, String pre) {
+		if (s.length()==0) {
+			System.out.print(pre + s + " ");
+			return;
+		}
+		for (int i=0;i <s.length();i++) {
+			char ch = s.charAt(i);
+			String s2 = s.substring(0,i) + s.substring(i+1);
+			printAll(s2, pre+ch);
+		}
+	}
 
 }

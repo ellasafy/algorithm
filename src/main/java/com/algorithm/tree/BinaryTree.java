@@ -2,6 +2,7 @@ package com.algorithm.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 import org.junit.Test;
 
@@ -50,6 +51,7 @@ public class BinaryTree {
 		System.out.println( "             1             " );
 		System.out.println("          2       3          ");
 		System.out.println("        4    5   6   7       ");
+		System.out.println("       8       ");
 		//4
 //		
 //		BinaryTree left111 = new BinaryTree();
@@ -309,5 +311,117 @@ public class BinaryTree {
 		}
 		
 	}
+	
+	@Test
+	public void testIsBSt() {
+		int arr[] = new int[]{5,7,6,9,11,10,8};
+		System.out.println(isBST(arr, 0, arr.length-1));
+		
+		int arr2[] = new int[]{7,4,6,5};
+		System.out.println(isBST(arr2, 0, arr2.length-1));
+	}
+	/**
+	 * 判断整数序列是不是二元查找树的后序遍历结果
+	 * @param arr
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	public boolean isBST(int[] arr, int start, int end) {
+		if (end -start +1 == 1) {
+			return true;
+		}
+		if (end - start +1 == 2) {
+			if (arr[start]>arr[end]) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		if (end - start + 1 == 3) {
+			if (arr[start] < arr[end] && arr[start+1] > arr[end]) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		int root = arr[end];
+		int mid = start;
+		for (int i = end;i >= start;i--) {
+			if (arr[i] < root) {
+				mid = i;
+				break;
+			}
+		}
+		for (int i = mid; i >= start;i--) {
+			if (arr[i] > root) {
+				return false;
+			}
+		}
+		return isBST(arr, start, mid) & isBST(arr, mid+1, end -1);
+		
+		
+	}
+	
+	
+	@Test
+	public void testIsContains() {
+		BinaryTree tmp = build();
+		BinaryTree tmp2 = tmp;
+		tmp2 = tmp2.left.left;
+		System.out.println(isContains( tmp, tmp2));
+	}
+
+	/**
+	 * 判断一个跟节点是否包含指定节点
+	 * @param head
+	 * @param leve
+	 * @return
+	 */
+	public boolean isContains(BinaryTree head, BinaryTree leve) {
+		if (head == leve) {
+			return true;
+		}
+		if (head == null) {
+			return false;
+		}
+		
+		return isContains(head.left, leve) | isContains(head.right, leve);
+	}
+	@Test
+	public void testCommondNode() {
+		BinaryTree tree = build();
+		BinaryTree tmp1 = tree.left.left.left;
+		BinaryTree tmp2 = tree.left.right;
+		System.out.println(tmp1.value);
+		System.out.println(tmp2.value);
+		
+		Stack<BinaryTree> stack = new Stack<BinaryTree>();
+		lowestCommonNode(stack, tree, tmp1, tmp2);
+		if (!stack.isEmpty()) {
+			System.out.println(stack.pop().value);
+		}
+		
+	}
+	
+	/*
+	 * 二叉树两个结点的最低共同父结点（树）
+	 */
+	public void lowestCommonNode(Stack<BinaryTree> stack,
+			BinaryTree root, BinaryTree node1, BinaryTree node2) {
+	    if (root == null) {
+	    	return;
+	    }
+		if (isContains(root, node1) && isContains(root, node2)) {
+			stack.push(root);
+			lowestCommonNode(stack, root.left, node1, node2);
+			lowestCommonNode(stack, root.right, node1, node2);
+		}else {
+			return;
+		}
+	}
+	
+	
 
 }

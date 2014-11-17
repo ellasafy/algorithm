@@ -1,5 +1,6 @@
 package com.algorithm.string;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -155,6 +157,67 @@ public class StringAll {
     	}
     	return null;
     }
-
+    
+    @Test
+    public void testLeatestSum() {
+    	int arr[] = new int[] {32,321,12};
+    	leatestSum(arr);
+    }
+   
+    public void leatestSum(int[] arr) {
+    	List<String> list = new ArrayList<String>();
+    	for(int i = 0;i < arr.length;i++) {
+    		list.add(arr[i] + "");
+    	}
+    	TreeSet<String> set = new TreeSet<String>();
+    	leatestSum(list, "", set);
+    	System.out.println(set.first());
+    }
+    public void leatestSum(List<String> list,String pre, TreeSet<String> set) {
+         if (list.isEmpty()) {
+        	 set.add(pre);
+         }else {
+        	 for (int i=0;i<list.size();i++) {
+        		 List<String> s = new ArrayList<String>();
+        		 s.addAll(list);
+        		 s.remove(i);
+        		 leatestSum(s, list.get(i) + pre, set);
+        	 }
+         }
+    }
+    
+    @Test
+    public void testIsSymmetry(){
+    	String s = "abcba";
+    	System.out.println(isSymmetry(s));
+    	
+    	String ss = "abcddcba";
+    	System.out.println(isSymmetry(ss));
+    	String sss = "abcdecba";
+    	System.out.println(isSymmetry(sss));
+    	
+    }
+    
+    /**
+     * 判读一个字符串是否对称
+     * @param s
+     * @return
+     */
+    public boolean isSymmetry(String s) {
+    	if (s.length() == 0) {
+    		return true;
+    	}
+    	if (s.length() == 1) {
+    		return true;
+    	}
+    	
+    	char a = s.charAt(0);
+    	char b = s.charAt(s.length() -1);
+    	if (a == b) {
+    		return isSymmetry(s.substring(1, s.length() -1));
+    	}else {
+    		return false;
+    	}
+    }
 
 }
