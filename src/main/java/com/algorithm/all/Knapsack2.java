@@ -2,6 +2,7 @@ package com.algorithm.all;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -67,6 +68,52 @@ public class Knapsack2 {
         
         
         knapsackR1(list, m, arr, n-1);
+    }
+    
+    @Test
+    public void testKnapsack3() {
+        int arr[] = new int[] {1,2,3,80};
+        int wt = 0;
+        for (int i=0;i<arr.length;i++) {
+            wt = wt + arr[i];
+        }
+        wt = wt/2;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+       
+        
+        System.out.println(knapsack3(list, arr.length/2, wt, arr, arr.length));
+        
+        for (List<Integer> li : set2) {
+            for (Integer i : li) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+    Set<List<Integer>> set2 = new HashSet<List<Integer>>();
+    public int knapsack3( ArrayList<Integer> list, int m,int wt, int[] arr, int n) {
+        if (n== 0 || wt == 0) {
+            return 0;
+        }
+        
+        if (m == 0) {
+            List<Integer> tmp = new ArrayList<Integer>();
+            for (Integer i : list) {
+                tmp.add(i);
+            }
+            set2.add(tmp);
+            return 0;
+        }
+        if (arr[n-1] >wt) {
+            return knapsack3(list, m, wt, arr, n-1); 
+        }
+        Integer va = new Integer(arr[n-1]);
+        list.add(va);
+        int val1 = arr[n-1] + knapsack3(list, m-1, wt -arr[n-1],arr, n-1);
+        list.remove(va);
+        
+        int val2 = knapsack3(list,m, wt, arr, n-1);
+        return val1 > val2 ? val1:val2;
     }
     
     @Test
