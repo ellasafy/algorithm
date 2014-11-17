@@ -39,6 +39,10 @@ public class Knapsack2 {
              System.out.println();
          }
     }
+    
+    /**
+     * 从一个数组中选出所有和等于特定数字的组合
+     */
     public Set<List<Integer>> set = new HashSet<List<Integer>>();
     public void knapsackR1(List<Integer> list, int m, int[] arr, int n) {
         if (m == 0|| n == 0) {
@@ -90,6 +94,9 @@ public class Knapsack2 {
             System.out.println();
         }
     }
+    /**
+     *两个数组a,b ,交换ab数据，似的|a -b|最小
+     */
     Set<List<Integer>> set2 = new HashSet<List<Integer>>();
     public int knapsack3( ArrayList<Integer> list, int m,int wt, int[] arr, int n) {
         if (n== 0 || wt == 0) {
